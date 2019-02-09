@@ -33,12 +33,65 @@
 </div>
 
 <!-- Pairs -->
+<div class="container">
+    <div class="row">
+        <div class="col card" style="width: 50vw; height: 100vh;">
+            <div class="card-body overflow-auto">
+                <h5 class="card-title">Pairs</h5>
+                <ul id="symbols">
+                    <li th:each="pair : ${pairs}" th:if="${#strings.endsWith(pair.symbol, 'BTC')}" th:value="${pair.symbol}" th:text="${pair.symbol}"></li>
+                </ul>
+            </div>
+        </div>
+    <!-- Info on selected pair -->
+        <div class="col card" style="width: 50vw; height: 100vh;">
+            <div class="card-body" id="price">
 
-<table id="pairs">
+            </div>
+        </div>
+    </div>
+</div>
 
-</table>
 
 
+
+
+
+
+
+
+
+
+
+
+
+<!--<div th:if="${!#strings.isEmpty(currentPair)}">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm">-->
+                <!--<div class="card">-->
+                    <!--<div class="card-body">-->
+                        <!--<p th:text="${currentPair.weightedAvgPrice}"></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm">-->
+                <!--<div class="card">-->
+                    <!--<div class="card-body">-->
+                        <!--<p th:text="${currentPair.volume}"></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm">-->
+                <!--<div class="card">-->
+                    <!--<div class="card-body">-->
+                        <!--<p th:text="${currentPair.priceChangePercent}"></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 <div th:replace="partials :: scripts"></div>
 </body>
