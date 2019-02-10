@@ -37,9 +37,9 @@
     <div class="row">
         <div class="col card" style="height: 100vh;">
             <div class="card-body overflow-auto">
-                <h5 class="card-title sticky-header">Pairs</h5>
+                <h5 class="card-title text-center">Pairs</h5>
                 <ul id="symbols">
-                    <li th:each="pair : ${pairs}" th:if="${#strings.endsWith(pair.symbol, 'BTC')}" th:value="${pair.symbol}" th:text="${pair.symbol}"></li>
+
                 </ul>
             </div>
         </div>
@@ -59,8 +59,9 @@
             </div>
             <div class="card center-info">
                 <div class="card-body" style="height: 50vh;">
-                    <h2>Available Balance: </h2>
-                    <h2 th:text="${BTC + ' BTC'}"></h2>
+                    <h2 class="align-middle">Available Balance: </h2>
+                    <h2 class="align-middle" th:text="${BTC + ' BTC'}"></h2>
+                    <h4 class="align-middle">Check trade history at <a href="www.binance.com">Binance</a></h4>
                 </div>
             </div>
         </div>
