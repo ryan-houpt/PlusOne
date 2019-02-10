@@ -20,7 +20,6 @@ public class MainController {
         BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("ippIfcn0Py3mPuzO4ggtCXT0yRalHk4V4yT0AHc42VVbdV3HeKFLhPm90enyfsjI", "oOy9ec1wKb7s6tgUaGsz7OKzZ7FJHudb4vQJ6UofNexqpksufGEDjd9z630YdqqF");
         BinanceApiRestClient client = factory.newRestClient();
 
-        model.addAttribute("pairs", client.getBookTickers());
         model.addAttribute("BTC", client.getAccount().getAssetBalance("BTC").getFree());
 
         return "system/home";

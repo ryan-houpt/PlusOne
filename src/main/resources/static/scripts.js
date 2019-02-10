@@ -6,6 +6,43 @@ $(document).ready(function() {
         $('#login-modal').modal('show');
     }
 
+    //Grabs exchange pairs
+    $.ajax({
+        url: 'https://api.binance.com/api/v1/exchangeInfo',
+        type: 'GET',
+        dataType: 'json',
+    })
+        .done(function(response) {
+            var symbols = response.symbols;
+            var pairs = new Array(300);
+
+            //creates a string of each pair
+            for (i = 0; i < symbols.length; i++) {
+
+                if (symbols[i].symbol.toString().endsWith("BTC")) {
+                    pairs += symbols[i].symbol;
+                    pairs += ",";
+                }
+            }
+            //splits into an Array list of Strings
+            var split_pairs = pairs.split(/[ ,]+/);;
+
+            //Sort string into Alpphabetical Order
+            split_pairs.sort();
+
+
+            //Pop the first two empty strings
+            split_pairs.shift();
+            split_pairs.shift();
+
+
+            //Append the list of strings to the list
+            for (i = 0; i < split_pairs.length; i++) {
+                $('#symbols').append(
+                    '<li value=' + split_pairs[i] + ' >' + split_pairs[i] + '</li>'
+                )
+            }
+        });
 });
 
 
@@ -57,8 +94,9 @@ $('#login').click(function() {
 });
 
 //Get pair info and display options
-$('#symbols li').click(function(e) {
-    const currentPair = $(e.target).text();
+$('#symbols').on('click', 'li', function(e) {
+    const currentPair = $(e.target).html();
+    console.log(currentPair);
 
     $.ajax({
         url: 'https://api.binance.com/api/v1/ticker/24hr?symbol=' + currentPair,
@@ -71,10 +109,10 @@ $('#symbols li').click(function(e) {
             const volume = response.volume;
             const change = response.priceChangePercent;
 
-
+            //Create trading platform
             $('#pair').html(symbol.replace("BTC", ""));
             $('#price').html("Current Price: " + (parseFloat(price * 3630.5).toFixed(2)));
-            $('#volume').html("24 Hour Volume: " + volume + "BTC");
+            $('#volume').html("24 Hour Volume: " + parseFloat(volume).toFixed(2) + "BTC");
             $('#24h').html("24 Hour change: " + (parseFloat(change).toFixed(2)) + "%");
             $('#buttons').html(
                 '<form action="/buy/' + symbol + '" method="post">' +
