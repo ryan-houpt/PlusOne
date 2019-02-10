@@ -2,12 +2,17 @@ package plusonerobotics.plusonerobotics.controllers;
 
 import com.binance.api.client.BinanceApiClientFactory;
 import com.binance.api.client.BinanceApiRestClient;
+import jdk.internal.joptsimple.internal.Strings;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import plusonerobotics.plusonerobotics.models.Mobile;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.binance.api.client.domain.account.NewOrder.marketBuy;
 import static com.binance.api.client.domain.account.NewOrder.marketSell;
 
