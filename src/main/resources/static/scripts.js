@@ -4,10 +4,10 @@
 //Login Modal Functions
 
 
-// //load modal on open
-// $(document).ready(function() {
-//     $('#login-modal').modal('show');
-// });
+//load modal on open
+$(document).ready(function() {
+    $('#login-modal').modal('show');
+});
 
 
 //submit click
