@@ -1,0 +1,8 @@
+.x4-app
+  margin-bottom: {{ margins.bottom + 'px' }}
+  margin-left: {{ margins.fixed ? 'auto' : margins.left + 'px' }}
+  margin-right: {{ margins.fixed ? 'auto' : margins.right + 'px' }}
+  margin-top: {{ margins.top + 'px' }}
+  max-width: {{ margins.fixed ? (margins.width + margins.left + margins.right) + 'px' : 'none' }}
+  {{ margins.fixed ? 'padding-left: ' + margins.left + 'px' : '' }}
+  {{ margins.fixed ? 'padding-right: ' + margins.right + 'px' : '' }}

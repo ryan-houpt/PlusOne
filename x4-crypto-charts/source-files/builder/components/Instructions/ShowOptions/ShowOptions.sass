@@ -1,0 +1,21 @@
+.x4-show-options
+  display: flex
+  flex-direction: column
+
+  .x4-header
+    align-items: center
+    cursor: pointer
+    display: flex
+    font-size: 16px
+
+  &.x4-active .x4-header .x4-icon
+    transform: rotate(90deg)
+
+  .x4-options
+    display: flex
+    flex-direction: column
+
+    > .x4-inside
+      display: flex
+      flex-direction: column
+      padding-top: 16px
