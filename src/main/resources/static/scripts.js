@@ -1,12 +1,11 @@
-
-
-
-//Login Modal Functions
-
-
-//load modal on open
+//load module
 $(document).ready(function() {
-    $('#login-modal').modal('show');
+    //Checks for custom cookie, if does not exist, create and run password check
+    if (document.cookie.indexOf('mycookie') === -1) {
+        document.cookie = 'mycookie=1';
+        $('#login-modal').modal('show');
+    }
+
 });
 
 
