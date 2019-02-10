@@ -35,33 +35,36 @@
 <!-- Pairs -->
 <div class="container">
     <div class="row">
-        <div class="col card" style="width: 50vw; height: 100vh;">
+        <div class="col card" style="height: 100vh;">
             <div class="card-body overflow-auto">
-                <h5 class="card-title">Pairs</h5>
+                <h5 class="card-title sticky-header">Pairs</h5>
                 <ul id="symbols">
                     <li th:each="pair : ${pairs}" th:if="${#strings.endsWith(pair.symbol, 'BTC')}" th:value="${pair.symbol}" th:text="${pair.symbol}"></li>
                 </ul>
             </div>
         </div>
     <!-- Info on selected pair -->
-        <div class="col card" style="width: 50vw; height: 100vh;">
-            <div class="card-body">
-                <span id="price"></span>
-                <div id="buttons">
+        <div class="col">
+            <div class="card" style="height: 50vh;">
+                <div class="card-body">
+                    <h1 class="text-center mw-100" id="pair"></h1>
+                    <h3 class="text-center mw-100" id="price"></h3>
+                    <h4 class="text-center mw-100" id="volume"></h4>
+                    <h4 class="text-center mw-100 mb-2" id="24h"></h4>
 
+                    <div id="buttons" class="text-center">
+
+                    </div>
                 </div>
             </div>
-
-
-
-
-
-                <!--<script type="text/javascript">window['X4CryptoCharts']=window['X4CryptoCharts']||[];window['X4CryptoCharts'].push({"type":"lineChart","selector":"#main-widget","margins":{"fixed":true,"left":24,"right":24}});</script>-->
-
-
-
-
+            <div class="card center-info">
+                <div class="card-body" style="height: 50vh;">
+                    <h2>Available Balance: </h2>
+                    <h2 th:text="${BTC + ' BTC'}"></h2>
+                </div>
+            </div>
         </div>
+                <!--<script type="text/javascript">window['X4CryptoCharts']=window['X4CryptoCharts']||[];window['X4CryptoCharts'].push({"type":"lineChart","selector":"#main-widget","margins":{"fixed":true,"left":24,"right":24}});</script>-->
     </div>
 </div>
 

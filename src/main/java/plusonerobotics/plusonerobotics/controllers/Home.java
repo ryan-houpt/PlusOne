@@ -1,25 +1,13 @@
 package plusonerobotics.plusonerobotics.controllers;
 
-
-
 import com.binance.api.client.BinanceApiClientFactory;
 import com.binance.api.client.BinanceApiRestClient;
-import com.binance.api.client.domain.TimeInForce;
-import com.binance.api.client.domain.account.NewOrder;
-import com.binance.api.client.domain.account.NewOrderResponse;
-import com.binance.api.client.domain.account.Order;
-import com.binance.api.client.domain.account.request.AllOrdersRequest;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.binance.api.client.domain.account.NewOrder;
-
-import java.util.List;
-
-import static com.binance.api.client.domain.account.NewOrder.limitBuy;
+import plusonerobotics.plusonerobotics.models.Mobile;
 import static com.binance.api.client.domain.account.NewOrder.marketBuy;
 import static com.binance.api.client.domain.account.NewOrder.marketSell;
 
@@ -33,6 +21,7 @@ public class Home {
         BinanceApiRestClient client = factory.newRestClient();
 
         model.addAttribute("pairs", client.getBookTickers());
+        model.addAttribute("BTC", client.getAccount().getAssetBalance("BTC").getFree());
 
         return "/home";
     }
@@ -42,9 +31,10 @@ public class Home {
 
         BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("ippIfcn0Py3mPuzO4ggtCXT0yRalHk4V4yT0AHc42VVbdV3HeKFLhPm90enyfsjI", "oOy9ec1wKb7s6tgUaGsz7OKzZ7FJHudb4vQJ6UofNexqpksufGEDjd9z630YdqqF");
         BinanceApiRestClient client = factory.newRestClient();
+        String message = "You bought " + pair;
 
         client.newOrder(marketBuy(pair, "2"));
-//
+        Mobile.sendText(message);
         return "redirect:/";
     }
 
@@ -54,8 +44,10 @@ public class Home {
 
         BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("ippIfcn0Py3mPuzO4ggtCXT0yRalHk4V4yT0AHc42VVbdV3HeKFLhPm90enyfsjI", "oOy9ec1wKb7s6tgUaGsz7OKzZ7FJHudb4vQJ6UofNexqpksufGEDjd9z630YdqqF");
         BinanceApiRestClient client = factory.newRestClient();
+        String message = "You sold " + pair;
 
         client.newOrder(marketSell(pair, "2"));
+        Mobile.sendText(message);
 
         return "redirect:/";
     }
