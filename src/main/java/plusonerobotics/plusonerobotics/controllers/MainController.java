@@ -12,7 +12,7 @@ import static com.binance.api.client.domain.account.NewOrder.marketBuy;
 import static com.binance.api.client.domain.account.NewOrder.marketSell;
 
 @Controller
-public class Home {
+public class MainController {
 
     @GetMapping("/")
     public String home(Model model) {
@@ -23,7 +23,7 @@ public class Home {
         model.addAttribute("pairs", client.getBookTickers());
         model.addAttribute("BTC", client.getAccount().getAssetBalance("BTC").getFree());
 
-        return "/home";
+        return "system/home";
     }
 
     @PostMapping("buy/{pair}")
