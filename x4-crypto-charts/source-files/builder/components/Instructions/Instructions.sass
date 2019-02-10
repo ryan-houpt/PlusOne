@@ -1,0 +1,101 @@
+.x4-instructions
+  bottom: 20px
+  left: 20px
+  position: fixed
+  right: 20px
+  top: 20px
+  user-select: text
+  z-index: 1000000
+
+  > .x4-inside
+    background-color: $color(inverted)
+    bottom: 0
+    display: flex
+    flex-direction: column
+    left: 0
+    overflow-x: hidden
+    position: absolute
+    top: 0
+    width: 100%
+
+    > .x4-content
+      display: flex
+      flex-direction: column
+      flex-shrink: 0
+      padding: 48px 48px
+
+  &.x4-pos-right > .x4-inside
+    left: auto
+    right: 0
+
+  &.x4-enter, &.x4-leave-to
+    > .x4-inside
+      left: 280px
+      opacity: 0
+      padding: 0
+      width: 0
+
+  &.x4-pos-right.x4-enter, &.x4-pos-right.x4-leave-to
+    > .x4-inside
+      left: auto
+      right: 280px
+
+  .x4-margin-bottom
+    margin-bottom: 16px!important
+
+  .x4-step
+    display: flex
+    flex-direction: column
+    margin-bottom: 96px
+
+  .x4-title
+    font-size: 28px
+    text-transform: uppercase
+
+  .x4-text
+    color: $color(primary, .64)
+    font-size: 18px
+
+  .x4-hint
+    color: $color(primary, .64)
+    font-size: 12px
+
+  code
+    background-color: $color(primary, .04)
+    border-radius: 4px
+    padding: 2px 4px 4px
+
+    .x4-red
+      color: #F92472
+
+    .x4-green
+      color: #A6E22B
+
+    .x4-yellow
+      color: #E7DB74
+
+    .x4-blue
+      color: #67D8EF
+
+    .x4-purple
+      color: #AC80FF
+
+  .x4-code
+    background-color: $color(primary, .08)
+    padding: 16px 16px
+
+    .x4-inside
+     user-select: all
+
+  .x4-copy-button
+    float: right
+
+  .x4-checkbox
+    margin: 4px 0
+
+  .x4-radio-button
+    margin: 4px 0
+
+  .x4-ui-input
+    margin-top: 8px
+    max-width: 640px

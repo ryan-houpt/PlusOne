@@ -58,10 +58,9 @@ $('#login').click(function() {
     }
 });
 
-//Get pair info
+//Get pair info and display options
 $('#symbols li').click(function(e) {
     const currentPair = $(e.target).text();
-
 
     $.ajax({
         url: 'https://api.binance.com/api/v3/ticker/price?symbol=' + currentPair,
@@ -70,10 +69,20 @@ $('#symbols li').click(function(e) {
     })
         .done(function(response) {
             const price = response.price;
+            const symbol = response.symbol;
             $('#price').html(price);
-        });
+            $('#buttons').html(
+                '<form action="/buy/' + symbol + '" method="post">' +
+                '<button class="btn btn-primary mb-5"><input type="submit" class="d-none" value="'+ symbol + '" />Buy 1</button>' +
+                '</form>' +
+                '<form action="/sell/' + symbol + '" method="post">' +
+                '<button id="sell" class="btn btn-danger">Sell</button>' +
+                '</form>'
+            );
 
+        });
 });
+
 
 
 

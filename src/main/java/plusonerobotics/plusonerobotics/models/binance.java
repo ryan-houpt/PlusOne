@@ -2,10 +2,14 @@ package plusonerobotics.plusonerobotics.models;
 
 import com.binance.api.client.BinanceApiClientFactory;
 import com.binance.api.client.BinanceApiRestClient;
+import com.binance.api.client.domain.account.Account;
+import com.binance.api.client.domain.market.BookTicker;
 import com.binance.api.client.domain.market.TickerPrice;
 import com.binance.api.client.domain.market.TickerStatistics;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+
 
 public class binance {
 
@@ -18,7 +22,6 @@ public class binance {
        BinanceApiRestClient client = factory.newRestClient();
 
 
-        System.out.println(client.get24HrPriceStatistics("NEOETH"));
     }
 
 }
