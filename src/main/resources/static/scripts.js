@@ -16,12 +16,15 @@ $(document).ready(function() {
             var symbols = response.symbols;
             var pairs = new Array(300);
 
+
+
             //creates a string of each pair
             for (i = 0; i < symbols.length; i++) {
-
                 if (symbols[i].symbol.toString().endsWith("BTC")) {
-                    pairs += symbols[i].symbol;
-                    pairs += ",";
+                    if (symbols[i].status !== "BREAK") {
+                        pairs += symbols[i].symbol;
+                        pairs += ",";
+                    }
                 }
             }
             //splits into an Array list of Strings
@@ -96,7 +99,6 @@ $('#login').click(function() {
 //Get pair info and display options
 $('#symbols').on('click', 'li', function(e) {
     const currentPair = $(e.target).html();
-    console.log(currentPair);
 
     $.ajax({
         url: 'https://api.binance.com/api/v1/ticker/24hr?symbol=' + currentPair,
@@ -109,6 +111,15 @@ $('#symbols').on('click', 'li', function(e) {
             const volume = response.volume;
             const change = response.priceChangePercent;
 
+
+            //Create trading platform
+            $('#pair').html(symbol.replace("BTC", ""));
+
+            $('#price').html("Current Price: $" + (parseFloat(price * 3630.5).toFixed(3)));
+
+            $('#volume').html("24 Hour Volume: " + parseFloat(volume).toFixed(2) + "BTC");
+
+
             if (change.toString().indexOf("-", 0)){
                 $('#24h').html("<span style='color: green'>24 Hour change: " + (parseFloat(change).toFixed(2)) + "%</span>");
             } else {
@@ -116,11 +127,6 @@ $('#symbols').on('click', 'li', function(e) {
             }
 
 
-            //Create trading platform
-            $('#pair').html(symbol.replace("BTC", ""));
-            $('#price').html("Current Price: " + (parseFloat(price * 3630.5).toFixed(2)));
-            $('#volume').html("24 Hour Volume: " + parseFloat(volume).toFixed(2) + "BTC");
-            // $('#24h').html("24 Hour change: " + (parseFloat(change).toFixed(2)) + "%");
             $('#buttons').html(
                 '<form action="/buy/' + symbol + '" method="post">' +
                 '<button class="btn btn-success mb-2"><input type="submit" class="d-none" value="'+ symbol + '" />Buy</button>' +

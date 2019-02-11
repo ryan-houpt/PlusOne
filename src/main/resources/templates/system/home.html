@@ -43,7 +43,7 @@
                 </ul>
             </div>
         </div>
-    <!-- Info on selected pair -->
+            <!-- Info on selected pair -->
         <div class="col">
             <div class="card" style="height: 50vh;">
                 <div class="card-body">
@@ -57,57 +57,18 @@
                     </div>
                 </div>
             </div>
+            <!-- Bottom right card -->
             <div class="card center-info">
                 <div class="card-body" style="height: 50vh;">
                     <h2 class="align-middle">Available Balance: </h2>
                     <h2 class="align-middle" th:text="${BTC + ' BTC'}"></h2>
-                    <h4 class="align-middle">Check trade history at <a href="www.binance.com">Binance</a></h4>
+                    <h4 class="align-middle">Check trade history at <a href="https://www.binance.com" target="_blank">Binance</a></h4>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<div th:if="${!#strings.isEmpty(currentPair)}">-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-sm">-->
-                <!--<div class="card">-->
-                    <!--<div class="card-body">-->
-                        <!--<p th:text="${currentPair.weightedAvgPrice}"></p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm">-->
-                <!--<div class="card">-->
-                    <!--<div class="card-body">-->
-                        <!--<p th:text="${currentPair.volume}"></p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm">-->
-                <!--<div class="card">-->
-                    <!--<div class="card-body">-->
-                        <!--<p th:text="${currentPair.priceChangePercent}"></p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
 
 <div th:replace="partials :: scripts"></div>
 </body>
