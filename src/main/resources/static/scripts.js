@@ -1,3 +1,6 @@
+var cors = "https://cors-anywhere.herokuapp.com/"
+
+
 //load module
 $(document).ready(function() {
     //Checks for custom cookie, if does not exist, create and run password check
@@ -6,11 +9,15 @@ $(document).ready(function() {
         $('#login-modal').modal('show');
     }
 
+
+
+
     //Grabs exchange pairs
     $.ajax({
-        url: 'https://api.binance.com/api/v1/exchangeInfo',
+        url: cors + 'https://api.binance.com/api/v1/exchangeInfo',
         type: 'GET',
         dataType: 'json',
+
     })
         .done(function(response) {
             var symbols = response.symbols;
@@ -101,7 +108,7 @@ $('#symbols').on('click', 'li', function(e) {
     const currentPair = $(e.target).html();
 
     $.ajax({
-        url: 'https://api.binance.com/api/v1/ticker/24hr?symbol=' + currentPair,
+        url: cors + 'https://api.binance.com/api/v1/ticker/24hr?symbol=' + currentPair,
         type: 'GET',
         dataType: 'json',
     })
