@@ -3,6 +3,9 @@ var cors = "https://cors-anywhere.herokuapp.com/"
 
 //load module
 $(document).ready(function() {
+
+    $('#market-loader').hide();
+    $('#pair-loader').hide();
     //Checks for custom cookie, if does not exist, create and run password check
     if (document.cookie.indexOf('mycookie') === -1) {
         document.cookie = 'mycookie=1';
@@ -17,14 +20,16 @@ $(document).ready(function() {
         url: cors + 'https://api.binance.com/api/v1/exchangeInfo',
         type: 'GET',
         dataType: 'json',
-
+        beforeSend: function() {
+            $('#pair-loader').show();
+        }
     })
         .done(function(response) {
             var symbols = response.symbols;
             var pairs = new Array(300);
 
 
-
+            $('#pair-loader').hide();
             //creates a string of each pair
             for (i = 0; i < symbols.length; i++) {
                 if (symbols[i].symbol.toString().endsWith("BTC")) {
@@ -111,8 +116,12 @@ $('#symbols').on('click', 'li', function(e) {
         url: cors + 'https://api.binance.com/api/v1/ticker/24hr?symbol=' + currentPair,
         type: 'GET',
         dataType: 'json',
+        beforeSend: function() {
+            $('#market-loader').show();
+        }
     })
         .done(function(response) {
+            $('#market-loader').hide();
             const price = response.askPrice;
             const symbol = response.symbol;
             const volume = response.volume;

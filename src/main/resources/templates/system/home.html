@@ -39,7 +39,7 @@
             <div class="card-body overflow-auto">
                 <h5 class="card-title text-center">Pairs</h5>
                 <ul id="symbols">
-
+                    <img id="pair-loader" class="float-left" src="../../static/img/ajax-loader.gif" th:src="@{img/ajax-loader.gif}" />
                 </ul>
             </div>
         </div>
@@ -47,11 +47,11 @@
         <div class="col">
             <div class="card" style="height: 50vh;">
                 <div class="card-body">
+                    <img id="market-loader" class="float-left" src="../../static/img/ajax-loader.gif" th:src="@{img/ajax-loader.gif}" />
                     <h1 class="text-center mw-100" id="pair"></h1>
                     <h3 class="text-center mw-100" id="price"></h3>
                     <h4 class="text-center mw-100" id="volume"></h4>
                     <h4 class="text-center mw-100 mb-2" id="24h"></h4>
-
                     <div id="buttons" class="text-center">
 
                     </div>
