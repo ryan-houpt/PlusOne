@@ -1,9 +1,13 @@
-var cors = "https://cors-anywhere.herokuapp.com/"
+
+//CORS proxy fix
+var cors = "https://cors-anywhere.herokuapp.com/";
 
 
 //load module
 $(document).ready(function() {
 
+
+    //hide loader images
     $('#market-loader').hide();
     $('#pair-loader').hide();
     //Checks for custom cookie, if does not exist, create and run password check
