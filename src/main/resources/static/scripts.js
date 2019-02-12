@@ -37,8 +37,16 @@ $(document).ready(function() {
             //creates a string of each pair
             for (i = 0; i < symbols.length; i++) {
                 if (symbols[i].symbol.toString().endsWith("BTC")) {
+                    //checks to make sure pair is still trading
                     if (symbols[i].status !== "BREAK") {
-                        pairs += symbols[i].symbol;
+
+                        //Grabs current symbol and adds / to mark the trading pair
+                        var currentSymbol = symbols[i].symbol;
+                        var BTCindex = currentSymbol.indexOf("BTC");
+
+                        var displaySymbol = currentSymbol.substr(0, BTCindex) + "/" + currentSymbol.substr(BTCindex)
+
+                        pairs += displaySymbol;
                         pairs += ",";
                     }
                 }
@@ -114,10 +122,17 @@ $('#login').click(function() {
 
 //Get pair info and display options
 $('#symbols').on('click', 'li', function(e) {
-    const currentPair = $(e.target).html();
+    var currentPair = $(e.target).html();
+    var removeSlash = currentPair.indexOf("/");
 
+    //Takes string with / and removes to make price call
+    newPair = currentPair.split("");
+    newPair.splice(removeSlash, 1);
+    newPair = newPair.join("");
+
+    //ajax call to get price info
     $.ajax({
-        url: cors + 'https://api.binance.com/api/v1/ticker/24hr?symbol=' + currentPair,
+        url: cors + 'https://api.binance.com/api/v1/ticker/24hr?symbol=' + newPair,
         type: 'GET',
         dataType: 'json',
         beforeSend: function() {
